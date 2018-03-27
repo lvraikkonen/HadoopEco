@@ -10,37 +10,14 @@ import org.apache.hadoop.mapreduce.lib.output.*;
 import org.apache.hadoop.util.*;
 
 public class WordCount extends Configured implements Tool{
-    public static class TokenizeMapper
-            extends Mapper<LongWritable, Text, Text, IntWritable> {
 
-        public static final IntWritable one = new IntWritable(1);
-        private Text word = new Text();
-
-        public void map(LongWritable key, Text value, Context context)
-                throws IOException, InterruptedException {
-            String line = value.toString();
-            StringTokenizer itr = new StringTokenizer(line);
-            while(itr.hasMoreTokens()){
-                word.set(itr.nextToken());
-                context.write(word, one);
-            }
-        }
-    }
-
-    public static class IntSumReduce
-            extends Reducer<Text, IntWritable, Text, IntWritable> {
-
-        public void reduce(Text key, Iterable<IntWritable> values, Context context)
-            throws IOException, InterruptedException{
-            int sum = 0;
-            for(IntWritable val: values){
-                sum += val.get();
-            }
-            context.write(key, new IntWritable(sum));
-        }
-    }
-
+    @Override
     public int run(String [] args) throws Exception{
+
+        if (args.length != 2){
+            System.err.println("Input: Output <input path> <output path>");
+            System.exit(-1);
+        }
 
         FileUtil.deleteDir("output");
         Configuration conf = new Configuration();
@@ -48,8 +25,8 @@ public class WordCount extends Configured implements Tool{
         Job job = new Job(conf, "word count");
         job.setJarByClass(WordCount.class);
 
-        job.setMapperClass(TokenizeMapper.class);
-        job.setReducerClass(IntSumReduce.class);
+        job.setMapperClass(WordCountMapper.class);
+        job.setReducerClass(WordCountReducer.class);
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
