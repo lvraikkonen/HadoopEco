@@ -1,5 +1,4 @@
-import java.io.IOException;
-import java.util.*;
+package word_count;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.conf.*;

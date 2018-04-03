@@ -1,8 +1,10 @@
+package word_count;
+
 import java.io.*;
 
 /**
  * Copyright (C), 2015-2018, XXX有限公司
- * FileName: FileUtil
+ * FileName: word_count.FileUtil
  * Author:   lvshuo
  * Date:     27/03/2018 2:33 PM
  * Description: File utility to handle folder

@@ -1,6 +1,7 @@
+package word_count;
 /**
  * Copyright (C), 2015-2018, XXX有限公司
- * FileName: WordCountMapper
+ * FileName: word_count.WordCountMapper
  * Author:   lvshuo
  * Date:     27/03/2018 2:52 PM
  * Description: Map part implement

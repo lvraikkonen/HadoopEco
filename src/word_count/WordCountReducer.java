@@ -1,6 +1,6 @@
-/**
+package word_count; /**
  * Copyright (C), 2015-2018, XXX有限公司
- * FileName: WordCountReducer
+ * FileName: word_count.WordCountReducer
  * Author:   lvshuo
  * Date:     27/03/2018 3:02 PM
  * Description: Reduce part implement
