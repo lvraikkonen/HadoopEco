@@ -3,3 +3,4 @@ input/
 output/
 target/
 out/
+src/*.class
